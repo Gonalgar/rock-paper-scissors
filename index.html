@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper, Scissors</title>
+</head>
+
+<body>
+
+    <script>
+        function getComputerChoice() {
+            let randomNumber = Math.floor(Math.random() * 3);
+            switch (randomNumber) {
+                case 0:
+                    return 'rock';
+                case 1:
+                    return 'paper';
+                case 2:
+                    return 'scissors';
+            }
+        }
+
+        function getHumanChoice() {
+            let humanChoice = prompt("Please enter your choice: rock, paper, or scissors.");
+            humanChoice = humanChoice.toLowerCase();
+
+            if (humanChoice === 'rock' || humanChoice === 'paper' || humanChoice === 'scissors') {
+                return humanChoice;
+            } else {
+                alert('You must enter rock, paper, or scissors.');
+                return getHumanChoice();
+            }
+
+            return humanChoice;
+        }
+
+        function playRound(humanChoice, computerChoice) {
+
+            if (humanChoice === computerChoice) {
+                return 'It\'s a tie!';
+            }
+            if (humanChoice === 'rock') {
+                if (computerChoice === 'paper') {
+                    return 'The computer wins!';
+                } else {
+                    return 'You win!';
+                }
+            }
+            if (humanChoice === 'paper') {
+                if (computerChoice === 'scissors') {
+                    return 'The computer wins!';
+                } else {
+                    return 'You win!';
+                }
+            }
+            if (humanChoice === 'scissors') {
+                if (computerChoice === 'rock') {
+                    return 'The computer wins!';
+                } else {
+                    return 'You win!';
+                }
+            }
+
+        }
+
+
+        function playGame() {
+            let humanScore = 0;
+            let computerScore = 0;
+
+            for (let i = 0; i < 5; i++) {
+                const humanSelection = getHumanChoice();
+                const computerSelection = getComputerChoice();
+
+                result = playRound(humanSelection, computerSelection);
+
+                if (result === 'You win!') {
+                    humanScore++;
+                } else if (result === 'The computer wins!') {
+                    computerScore++;
+                }
+
+                console.log(`You chose ${humanSelection}. The computer chose ${computerSelection}. ${result}`);
+            }
+
+            if (humanScore > computerScore) {
+                console.log('You win the game!');
+            } else if (humanScore < computerScore) {
+                console.log('The computer wins the game!');
+            } else {
+                console.log('It\'s a tie!');
+            }
+
+        }
+
+        playGame();
+
+    </script>
+
+</body>
+
+</html>
